@@ -1,0 +1,43 @@
+name: fluent_icu
+version: 0.0.0
+description: >-
+  ICU4X backend for fluent_bundle — full ECMA-402 number, currency, unit,
+  and date-time formatting plus every-locale plural rules for Project
+  Fluent.
+homepage: https://github.com/whuppi/fluent_icu
+repository: https://github.com/whuppi/fluent_icu
+issue_tracker: https://github.com/whuppi/fluent_icu/issues
+
+topics:
+  - i18n
+  - localization
+  - fluent
+  - icu
+  - intl
+
+environment:
+  sdk: ">=3.11.0 <4.0.0" # icu_kit floor — no lower SDK can resolve this package
+
+# Path deps while the family is unpublished — the release checklist flips
+# them to hosted versions at publish time.
+dependencies:
+  # The core this package is a backend FOR — re-exported from the barrel.
+  fluent_bundle:
+    path: ../fluent_bundle
+
+  # The ICU4X engine (native FFI + WASM + browser Intl).
+  icu_kit:
+    path: ../icu_kit
+  # IANA time-zone database (offsets + DST rules). ICU4X deliberately does
+  # NOT bundle the tzdb — it expects the caller to supply the offset — so the
+  # icu satellite brings it here to make DATETIME `timeZone` fully correct.
+  timezone: ^0.10.0
+
+dev_dependencies:
+  # Lint rules
+  lints: ^5.0.0
+
+  # Test runner — the VM and Chrome lanes both execute under `dart test`
+  test: ^1.25.0
+  # Corpus runner only — parses the vendored fluent-rs bundle fixtures.
+  yaml: ^3.1.0

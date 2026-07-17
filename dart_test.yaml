@@ -1,0 +1,16 @@
+# Default test target is the VM (native FFI engine). The web lane runs
+# explicitly against Chrome:
+#
+#   dart test                        # VM suites (icu_kit native engine)
+#   dart test -p chrome test/web     # the showcase over the WASM engine
+#
+# Or use the Makefile: make test / make test-web / make check.
+
+platforms: [vm]
+
+# On CI (Chrome for Testing), --no-sandbox is required because the SUID
+# sandbox binary isn't included. Locally this flag is harmless.
+override_platforms:
+  chrome:
+    settings:
+      arguments: --no-sandbox --disable-gpu
