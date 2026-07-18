@@ -23,8 +23,7 @@ environment:
 # so it's a normal hosted dependency.
 dependencies:
   # The package this is a backend FOR — re-exported from its main library.
-  fluent_bundle:
-    path: ../fluent_bundle
+  fluent_bundle: ^0.1.0
 
   # The ICU4X engine (native FFI + WASM + browser Intl).
   icu_kit: ^0.2.0
