@@ -3,7 +3,7 @@
 import 'package:fluent_icu/src/number/currency_digits.dart';
 import 'package:test/test.dart';
 
-void main() {
+void registerCurrencyDigitsTests() {
   group('currencyDigits', () {
     test('zero-digit currencies (JPY class)', () {
       for (final code in ['JPY', 'KRW', 'VND', 'CLP', 'ISK']) {

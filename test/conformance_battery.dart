@@ -2,7 +2,7 @@ import 'package:fluent_bundle/testing.dart';
 import 'package:fluent_icu/fluent_icu.dart';
 import 'package:test/test.dart';
 
-void main() {
+void registerConformanceTests() {
   group('IcuBackend conformance', () {
     // icu_kit must be initialized once before any format call.
     setUpAll(IcuBackend.init);

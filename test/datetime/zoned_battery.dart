@@ -1,4 +1,3 @@
-@TestOn('vm')
 library;
 
 // The zoned path (timeZone set): instant conversion through the tz
@@ -8,7 +7,7 @@ library;
 import 'package:fluent_icu/fluent_icu.dart';
 import 'package:test/test.dart';
 
-void main() {
+void registerZonedTests() {
   group('IcuBackend — DATETIME zoned path', () {
     late IcuBackend backend;
     setUpAll(() async {

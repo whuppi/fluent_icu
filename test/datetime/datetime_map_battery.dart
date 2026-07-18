@@ -1,4 +1,3 @@
-@TestOn('vm')
 library;
 
 // §8.8 datetime mapping — the FluentDateTimeOptions fields that ICU4X reads
@@ -10,7 +9,7 @@ library;
 import 'package:fluent_icu/fluent_icu.dart';
 import 'package:test/test.dart';
 
-void main() {
+void registerDatetimeMapTests() {
   group('IcuBackend — DATETIME locale-extension options (§8.8)', () {
     late IcuBackend backend;
     setUpAll(() async {

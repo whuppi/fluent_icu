@@ -1,4 +1,3 @@
-@TestOn('vm')
 library;
 
 // F8 end-to-end on the icu backend: visible fraction digits (CLDR operand
@@ -9,7 +8,7 @@ library;
 import 'package:fluent_icu/fluent_icu.dart';
 import 'package:test/test.dart';
 
-void main() {
+void registerPluralMapTests() {
   group('IcuBackend — operand v (visible fraction digits)', () {
     late IcuBackend backend;
     setUpAll(() async {

@@ -105,6 +105,25 @@ test-guards:
 	if [ -n "$$bad" ]; then \
 	  echo "experimental icu_kit facade used outside styles.dart:"; \
 	  echo "$$bad"; exit 1; fi
+	@bad=$$(find test -name "*_test.dart" ! -path "test/runners/*"); \
+	if [ -n "$$bad" ]; then \
+	  echo "Test entry outside test/runners/ — suites are batteries, runners"; \
+	  echo "are the only *_test.dart entry points:"; \
+	  echo "$$bad"; exit 1; fi
+	@bad=""; \
+	for f in $$(find test -name "*_battery.dart"); do \
+	  rel=$${f#test/}; \
+	  if grep -qi "web-only:" "$$f"; then \
+	    grep -q "$$rel" test/runners/web_runner_test.dart || bad="$$bad$$f (missing from web runner)\n"; \
+	    grep -q "$$rel" test/runners/vm_runner_test.dart && bad="$$bad$$f (web-only battery in vm runner)\n"; \
+	  else \
+	    grep -q "$$rel" test/runners/vm_runner_test.dart || bad="$$bad$$f (missing from vm runner)\n"; \
+	    grep -q "$$rel" test/runners/web_runner_test.dart && bad="$$bad$$f (vm battery in the Chrome runner)\n"; \
+	  fi; \
+	done; \
+	if [ -n "$$bad" ]; then \
+	  echo "battery/runner membership violation:"; \
+	  printf "$$bad"; exit 1; fi
 	@echo "✓ test guards clean"
 
 # ═══════════════════════════════════════════════════════════════════
@@ -117,7 +136,7 @@ test-guards:
 test:
 	@echo "=== VM suite (icu_kit's hook compiles ICU4X on first run) ==="
 	@mkdir -p $(TEST_RESULTS_DIR)
-	@$(DART) test $(TIMEOUT) --file-reporter json:$(TEST_RESULTS_DIR)/vm.json
+	@$(DART) test $(TIMEOUT) test/runners/vm_runner_test.dart --file-reporter json:$(TEST_RESULTS_DIR)/vm.json
 
 # make web-assets  Install icu_kit's web engine (WASM + JS bindings) into
 #                  web/icu_kit/ (gitignored) via icu_kit's own setup command
@@ -133,14 +152,14 @@ web-assets:
 test-web: web-assets
 	@echo "=== Chrome suite (dart test -p chrome) ==="
 	@mkdir -p $(TEST_RESULTS_DIR)
-	@$(DART) test -p chrome $(TIMEOUT) test/web --file-reporter json:$(TEST_RESULTS_DIR)/web.json
+	@$(DART) test -p chrome $(TIMEOUT) test/runners/web_runner_test.dart --file-reporter json:$(TEST_RESULTS_DIR)/web.json
 
 # make test-example  The pub.dev showcase (example/main.dart) run with
 #                    its output pinned — every Example-tab claim proven.
 test-example:
 	@echo "=== Example showcase (pinned output) ==="
 	@mkdir -p $(TEST_RESULTS_DIR)
-	@$(DART) test $(TIMEOUT) test/example --file-reporter json:$(TEST_RESULTS_DIR)/example.json
+	@$(DART) test $(TIMEOUT) test/runners/example_runner_test.dart --file-reporter json:$(TEST_RESULTS_DIR)/example.json
 
 # ═══════════════════════════════════════════════════════════════════
 # § 4 — Clean

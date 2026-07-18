@@ -1,3 +1,4 @@
+// web-only: runs the WASM engine in Chrome — needs `make web-assets`.
 // The SAME showcase, in a real browser — the byte-identical-output claim,
 // tested literally. The VM lane runs example/main.dart over native FFI
 // (test/example/); this lane runs the identical showcase over the WASM
@@ -8,8 +9,7 @@
 // web/icu_kit/ (gitignored) via `dart run icu_kit:setup web` — the
 // released prebuilt on a hosted icu_kit dep, the sibling checkout's
 // build on the path dep. The moduleUrl below is relative to this test
-// PAGE (served at test/web/), not the package root.
-@TestOn('chrome')
+// PAGE (test/runners/, same depth as test/web/), not the package root.
 library;
 
 import 'package:icu_kit/icu_kit.dart' show IcuKit;
@@ -17,7 +17,7 @@ import 'package:test/test.dart';
 
 import '../../example/main.dart';
 
-void main() {
+void registerShowcaseChromeTests() {
   late Map<String, String> lines;
 
   setUpAll(() async {

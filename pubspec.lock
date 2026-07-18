@@ -116,10 +116,11 @@ packages:
   fluent_bundle:
     dependency: "direct main"
     description:
-      path: "../fluent_bundle"
-      relative: true
-    source: path
-    version: "0.0.0"
+      name: fluent_bundle
+      sha256: e6a0457968c059e31fc675eb5d07a773ff8621076205421b0e408f32616223bc
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -179,10 +180,11 @@ packages:
   icu_kit:
     dependency: "direct main"
     description:
-      path: "../icu_kit"
-      relative: true
-    source: path
-    version: "0.0.0"
+      name: icu_kit
+      sha256: "37ad65bc53eb1595243d32826a7fb179e02a6767a919be7a8b887156aed2c7ae"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   io:
     dependency: transitive
     description:

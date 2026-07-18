@@ -24,7 +24,6 @@
 // VM-only: this runner reads `.yaml` fixtures from disk via `dart:io`.
 // The bundle resolver itself is pure-Dart and cross-platform; the corpus
 // harness is the only piece that needs filesystem access.
-@TestOn('vm')
 library;
 
 import 'dart:io';
@@ -33,7 +32,7 @@ import 'package:fluent_icu/fluent_icu.dart';
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
 
-void main() {
+void registerBundleCorpusTests() {
   // One engine init for every fixture; test bodies build their own
   // IcuBackend instances after this completes.
   setUpAll(() async {

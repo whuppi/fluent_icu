@@ -1,4 +1,3 @@
-@TestOn('vm')
 library;
 
 // §8.6 number mapping — every FluentNumberOptions digit field renders through
@@ -9,7 +8,7 @@ library;
 import 'package:fluent_icu/fluent_icu.dart';
 import 'package:test/test.dart';
 
-void main() {
+void registerNumberMapTests() {
   group('IcuBackend — NUMBER digit options (§8.6)', () {
     late IcuBackend backend;
     setUpAll(() async {

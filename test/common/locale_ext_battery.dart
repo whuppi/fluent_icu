@@ -2,7 +2,7 @@ import 'package:fluent_bundle/fluent_bundle.dart';
 import 'package:fluent_icu/src/common/locale_ext.dart';
 import 'package:test/test.dart';
 
-void main() {
+void registerLocaleExtTests() {
   group('applyDateTimeLocaleExtensions', () {
     test('no relevant options → locale unchanged', () {
       expect(

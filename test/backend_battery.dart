@@ -1,10 +1,9 @@
-@TestOn('vm')
 library;
 
 import 'package:fluent_icu/fluent_icu.dart';
 import 'package:test/test.dart';
 
-void main() {
+void registerBackendTests() {
   group('IcuBackend (native)', () {
     late IcuBackend backend;
     setUpAll(() async {

@@ -7,7 +7,7 @@ import 'package:fluent_icu/src/datetime/field_mapping.dart';
 import 'package:icu_kit/icu_kit.dart';
 import 'package:test/test.dart';
 
-void main() {
+void registerFieldMappingTests() {
   group('pickDateFieldSet', () {
     test('dateStyle full forces the weekday-bearing set', () {
       expect(

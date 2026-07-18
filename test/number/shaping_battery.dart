@@ -7,7 +7,7 @@ import 'package:fluent_icu/src/number/shaping.dart';
 import 'package:icu_kit/icu_kit.dart';
 import 'package:test/test.dart';
 
-void main() {
+void registerShapingTests() {
   NumShaping resolve(
     FluentNumberOptions opts, {
     String style = 'decimal',
