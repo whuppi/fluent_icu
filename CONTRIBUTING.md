@@ -13,12 +13,8 @@ make hooks               # activates commit-msg + pre-commit (run once)
 fvm install              # downloads the SDK version pinned in .fvmrc
 fvm dart pub get
 
-# The family is pre-release: the pubspec resolves sibling repos by path.
-# Clone them NEXT TO this checkout (same parent directory):
-#   ../fluent_bundle     https://github.com/whuppi/fluent_bundle
-#   ../icu_kit           https://github.com/whuppi/icu_kit
-# icu_kit's build hook compiles ICU4X from vendored Rust on the first
-# test run (needs the Rust toolchain); later runs hit the cargo cache.
+# icu_kit's build hook fetches its prebuilt engine on the first test run
+# (it compiles from vendored source only if the download is unavailable).
 fvm dart test
 ```
 
@@ -40,11 +36,11 @@ make check DART=dart FLUTTER=flutter
 make check
 ```
 
-Runs `lint-shell` + `analyze` + `analyze-floor` + `test-guards`
-(experimental-facade confinement) + `test` (VM, native engine) +
-`test-web` (the same showcase over the WASM engine in real Chrome) +
-`test-example` (the pinned showcase). The `platforms` gate is
-blocked-loud pre-release.
+Runs `lint-shell` + `analyze` + `analyze-floor` + `platforms` (the
+same pana pub.dev runs) + `test-guards` (experimental-facade
+confinement) + `test` (VM, native engine) + `test-web` (the same
+showcase over the WASM engine in real Chrome) + `test-example` (the
+pinned showcase).
 Must pass. Don't suppress with `// ignore:` — fix the underlying
 issue.
 
