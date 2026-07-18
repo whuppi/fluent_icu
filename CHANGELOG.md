@@ -60,6 +60,11 @@ CONTENT RULES (never change)
 
 <!-- Add new versions below, newest first. -->
 
+## 0.1.1
+
+- Widen the `timezone` constraint to `>=0.10.0 <0.12.0` so the latest `0.11.x` resolves while `0.10.x` stays supported.
+- Docs: the install snippet lists only `fluent_icu` (it re-exports `fluent_bundle`), and clarifies which backend to reach for.
+
 ## 0.1.0
 
 First release — the full-power formatting backend for fluent_bundle, on Unicode's ICU4X engine.
