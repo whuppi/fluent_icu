@@ -10,7 +10,7 @@
 
 The full-power formatting backend for [`fluent_bundle`](https://pub.dev/packages/fluent_bundle): every `NUMBER` and `DATETIME` option — measurement units, non-Gregorian calendars, time zones, other digit systems, compact notation (1.2M), sign display — plus plural rules, ordinals included, for every language. It runs on Unicode's **ICU4X** engine through [`icu_kit`](https://pub.dev/packages/icu_kit), so you get the same output on every platform.
 
-> **This is a backend — an add-on, not a starting point.** Flutter apps start at [`fluent_flutter`](https://pub.dev/packages/fluent_flutter); pure Dart starts at [`fluent_bundle`](https://pub.dev/packages/fluent_bundle). Of the two backends, [`fluent_intl`](https://pub.dev/packages/fluent_intl) is the lighter default — pure Dart, zero setup, the common options. Reach for this one when you need options `fluent_intl` doesn't have, or when you need the exact same output on native, web, and server. Same `.ftl`, same calls, one changed line.
+> **This is a backend — an add-on, not a starting point.** Flutter apps start at [`fluent_flutter`](https://pub.dev/packages/fluent_flutter); pure Dart starts at [`fluent_bundle`](https://pub.dev/packages/fluent_bundle). Of the two backends, [`fluent_intl`](https://pub.dev/packages/fluent_intl) is the lighter default: pure Dart, zero setup, the common options. Reach for `fluent_icu` when you need options `fluent_intl` doesn't have, or when you need the exact same output on native, web, and server. Same `.ftl`, same calls, one changed line.
 
 > **Status:** 0.x. The API can change between minor versions until `1.0.0` — pre-1.0, the minor is the breaking axis, so pin `^0.N.0` and read the changelog on minor bumps.
 
@@ -42,7 +42,6 @@ The full-power formatting backend for [`fluent_bundle`](https://pub.dev/packages
 
 ```yaml
 dependencies:
-  fluent_bundle:
   fluent_icu:
 ```
 
