@@ -45,12 +45,12 @@ If you're working on this tool standalone (cloned outside the workspace), the in
 Run these after every code change. A failing test or analyzer error means the task is not done — don't suppress with `// ignore:`, `# noqa`, or `--no-verify`. Fix the underlying issue.
 
 ```bash
-# Setup (one-time) — needs sibling repos ../fluent_bundle and ../icu_kit
+# Setup (one-time)
 make hooks
-fvm install && fvm dart pub get   # icu_kit's build hook compiles ICU4X on first test run
+fvm install && fvm dart pub get   # icu_kit's build hook fetches its prebuilt engine on first test run
 
 # Full gate
-make check               # lint-shell + analyze + analyze-floor + test-guards +
+make check               # lint-shell + analyze + analyze-floor + platforms + test-guards +
                          # test (VM, native) + test-web (WASM in Chrome) + test-example
 ```
 
@@ -77,7 +77,7 @@ When in doubt, read existing code in this repo and match it. Per-repo style cons
 - **icu_kit's `@experimental` facades are confined** to `lib/src/number/styles.dart` — `make test-guards` enforces it; the analysis_options severity override is documented there, not a `// ignore:`.
 - **The chrome lane asserts the SAME pinned strings as the native lane** (the byte-identical-output claim, tested literally). A new pinned output goes in BOTH suites, invisible characters as `\uXXXX` escapes.
 - **`make web-assets`** installs icu_kit's WASM engine into `web/icu_kit/` (gitignored) via `dart run icu_kit:setup web`.
-- **The `platforms` gate is blocked-loud pre-release** — pana can't resolve the sibling-repo path deps; the family release checklist flips it in.
+- **The `platforms` gate runs live** — pana (the same analyzer pub.dev runs) must report all 6 platforms.
 
 ---
 
