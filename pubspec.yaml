@@ -1,9 +1,9 @@
 name: fluent_icu
 version: 0.0.0
 description: >-
-  ICU4X backend for fluent_bundle — full ECMA-402 number, currency, unit,
-  and date-time formatting plus every-locale plural rules for Project
-  Fluent.
+  ICU4X formatting backend for fluent_bundle — every number, currency,
+  unit, and date option, plus plural rules for every language. For
+  Project Fluent.
 homepage: https://github.com/whuppi/fluent_icu
 repository: https://github.com/whuppi/fluent_icu
 issue_tracker: https://github.com/whuppi/fluent_icu/issues
@@ -18,19 +18,18 @@ topics:
 environment:
   sdk: ">=3.11.0 <4.0.0" # icu_kit floor — no lower SDK can resolve this package
 
-# Path deps while the family is unpublished — the release checklist flips
-# them to hosted versions at publish time.
+# fluent_bundle is a path dep while the family is unpublished — the release
+# checklist flips it to a hosted version at publish time. icu_kit is published,
+# so it's a normal hosted dependency.
 dependencies:
-  # The core this package is a backend FOR — re-exported from the barrel.
-  fluent_bundle:
-    path: ../fluent_bundle
+  # The package this is a backend FOR — re-exported from its main library.
+  fluent_bundle: ^0.1.0
 
   # The ICU4X engine (native FFI + WASM + browser Intl).
-  icu_kit:
-    path: ../icu_kit
+  icu_kit: ^0.2.0
   # IANA time-zone database (offsets + DST rules). ICU4X deliberately does
-  # NOT bundle the tzdb — it expects the caller to supply the offset — so the
-  # icu satellite brings it here to make DATETIME `timeZone` fully correct.
+  # NOT bundle the tzdb — it expects the caller to supply the offset — so this
+  # package brings it here to make DATETIME `timeZone` fully correct.
   timezone: ^0.10.0
 
 dev_dependencies:
