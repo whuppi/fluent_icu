@@ -59,3 +59,12 @@ CONTENT RULES (never change)
 -->
 
 <!-- Add new versions below, newest first. -->
+
+## 0.1.0
+
+First release — the full-power formatting backend for fluent_bundle, on Unicode's ICU4X engine.
+
+- **Formatting:** every number and date option — measurement units, non-Gregorian calendars, time zones, other digit systems, compact notation, sign display.
+- **Plurals:** both counting plurals (1 item / 5 items) and ordering plurals (1st, 2nd, 3rd), for every language.
+- **Engine:** ICU4X via `icu_kit` — the same output on every platform, whether native, web via WebAssembly, or the browser's own `Intl`.
+- **When an option isn't available:** the few ICU4X gaps (scientific notation is the main one) render the nearest form and record it — never silently dropped.
