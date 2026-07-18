@@ -43,7 +43,7 @@ The full-power formatting backend for [`fluent_bundle`](https://pub.dev/packages
 ```yaml
 dependencies:
   fluent_bundle:
-  fluent_icu:
+  fluent_icu: ^0.1.0
 ```
 
 The engine arrives through `icu_kit`. On native platforms its build hook handles everything on first build; on web there's a one-time setup command, and a size dial when the default engine is bigger than you want — [icu_kit's Install section](https://pub.dev/packages/icu_kit#install) is the authority on both.

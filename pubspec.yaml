@@ -1,5 +1,5 @@
 name: fluent_icu
-version: 0.0.0
+version: 0.1.0
 description: >-
   ICU4X formatting backend for fluent_bundle — every number, currency,
   unit, and date option, plus plural rules for every language. For
