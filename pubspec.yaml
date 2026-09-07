@@ -27,11 +27,11 @@ dependencies:
   # IANA time-zone database (offsets + DST rules). ICU4X deliberately does
   # NOT bundle the tzdb — it expects the caller to supply the offset — so this
   # package brings it here to make DATETIME `timeZone` fully correct.
-  timezone: '>=0.10.0 <0.12.0'
+  timezone: ">=0.10.0 <0.12.0"
 
 dev_dependencies:
   # Lint rules
-  lints: ^5.0.0
+  lints: ">=5.0.0 <7.0.0"
 
   # Test runner — the VM and Chrome lanes both execute under `dart test`
   test: ^1.25.0
